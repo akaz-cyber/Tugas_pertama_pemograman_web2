@@ -1,0 +1,57 @@
+.footer {
+    background-color: #3a3a3a;
+    color: #bbb;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+  }
+
+  .footer-top {
+    text-align: center;
+    padding: 30px 20px;
+  }
+
+  .footer-nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+
+  .footer-nav {
+    margin-bottom: 15px;
+  }
+
+  .footer-contact {
+    margin: 10px 0;
+  }
+
+  .footer-note {
+    font-style: italic;
+    margin: 5px 0;
+  }
+
+  .footer-copy {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #888;
+  }
+
+  .footer-cookie {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    flex-wrap: wrap;
+  }
+
+  .cookie-btn {
+    background-color: white;
+    color: #000;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
