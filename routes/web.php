@@ -42,6 +42,6 @@ Route::controller(WisataController::class)->prefix('Wisatas')->group(function ()
     Route::post('store', 'store')->name('wisatas.store');
     Route::get('show/{id}', 'show')->name('wisatas.show');
     Route::get('edit/{id}', 'edit')->name('wisatas.edit');
-    Route::put('edit/{id}', 'update')->name('products.update');
-    Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
+    Route::put('edit/{id}', 'update')->name('wisatas.update');
+    Route::delete('destroy/{id}', 'destroy')->name('wisatas.destroy');
 });

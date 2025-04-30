@@ -14,7 +14,8 @@ class WisataController extends Controller
      */
     public function index()
     {
-        return view("admin.adminwisata");
+        $wisatas = Wisata::latest()->paginate(5);
+        return view("admin.adminwisata", compact('wisatas'));
     }
 
     /**
@@ -35,7 +36,24 @@ class WisataController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validasi data input
+    $request->validate([
+        'judul' => 'required|string|max:255',
+        'deskripsi' => 'required|string',
+        'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+    ]);
+
+    // Simpan file foto ke storage
+    $photoPath = $request->file('photo')->store('wisata', 'public');
+
+    // Simpan data ke database
+    Wisata::create([
+        'judul' => $request->judul,
+        'deskripsi' => $request->deskripsi,
+        'photo' => $photoPath
+    ]);
+
+    return redirect()->route('wisatas')->with('success', 'Data wisata berhasil ditambahkan.');
     }
 
     /**
