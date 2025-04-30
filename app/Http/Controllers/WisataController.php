@@ -14,7 +14,7 @@ class WisataController extends Controller
      */
     public function index()
     {
-        //
+        return view("admin.adminwisata");
     }
 
     /**
@@ -24,7 +24,7 @@ class WisataController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createwisata');
     }
 
     /**

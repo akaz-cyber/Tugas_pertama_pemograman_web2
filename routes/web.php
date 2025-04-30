@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\WisataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,11 +16,13 @@ use App\Http\Controllers\HomeController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+//route homepage
 Route::get('/', [HomeController::class, 'home'])->name('beranda');
 
+//route dashboard
 Route::middleware('auth')->group(function (){
     Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
+
 
 });
 
@@ -30,4 +33,15 @@ Route::controller(AuthController::class)->group(function () {
     Route::get('login', 'login')->name('login');
     Route::post('login', 'loginAction')->name('login.action');
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
+});
+
+
+Route::controller(WisataController::class)->prefix('Wisatas')->group(function () {
+    Route::get('', 'index')->name('wisatas');
+    Route::get('create', 'create')->name('wisatas.create');
+    Route::post('store', 'store')->name('wisatas.store');
+    Route::get('show/{id}', 'show')->name('wisatas.show');
+    Route::get('edit/{id}', 'edit')->name('wisatas.edit');
+    Route::put('edit/{id}', 'update')->name('products.update');
+    Route::delete('destroy/{id}', 'destroy')->name('products.destroy');
 });
