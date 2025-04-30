@@ -27,7 +27,7 @@
         <tbody>
             @foreach ($wisatas as $wisata)
                 <tr>
-                    <td>{{ $loop->iteration }}</td>
+                    <td>{{ $loop->iteration + ($wisatas->currentPage() - 1) * $wisatas->perPage() }}</td>
                     <td>
                         <img src="{{ asset('storage/' . $wisata->photo) }}" alt="{{ $wisata->judul }}" width="100">
                     </td>
