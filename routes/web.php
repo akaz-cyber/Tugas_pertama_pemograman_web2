@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,19 +16,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    $judul = [
-        "Raja Ampat",
-        "Labuan Bajo",
-        "Bitan",
+Route::get('/', [HomeController::class, 'home'])->name('beranda');
 
-    ];
+Route::middleware('auth')->group(function (){
+    Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
 
-    $deskripsi = [
-        "Menikmati udara segar pegunungan yang memukau.",
-        "Spot liburan favorit untuk keluarga dan teman-teman.",
-        "Eksplorasi alam dengan pengalaman tak terlupakan."
-    ];
+});
 
-    return view('Home', compact('judul', 'deskripsi'));
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('register', 'register')->name('register');
+    Route::post('register', 'registerSave')->name('register.save');
+    Route::get('login', 'login')->name('login');
+    Route::post('login', 'loginAction')->name('login.action');
+    Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });

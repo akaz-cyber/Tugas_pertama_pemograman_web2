@@ -28,7 +28,29 @@
                         <a href="#hubungi" class="nav-link">Alamat dan informasi kontak</a>
                     </li>
                 </ul>
-                <button class="btn btn-outline-success mx-4 btn-lg" type="submit">LOGIN <i class="bi bi-arrow-bar-right"></i></button>
+                @auth
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle fw-semibold" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">Profil</a></li>
+                            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <form action="{{ route('logout') }}" method="GET">
+                                    <button type="submit" class="dropdown-item text-danger">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            @else
+                <a class="btn btn-outline-success mx-4 btn-lg" href="{{ url('login') }}">
+                    LOGIN <i class="bi bi-arrow-bar-right"></i>
+                </a>
+            @endauth
             </div>
         </div>
     </nav>
