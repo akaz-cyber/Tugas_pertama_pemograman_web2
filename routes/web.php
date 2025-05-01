@@ -18,11 +18,14 @@ use App\Http\Controllers\WisataController;
 */
 //route homepage
 Route::get('/', [HomeController::class, 'home'])->name('beranda');
+Route::get('about', [HomeController::class, 'about'])->name('about');
+Route::get('informasi', [HomeController::class, 'informasi'])->name('informasi');
+Route::get('contact', [HomeController::class, 'contact'])->name('contact');
+Route::get('detailwisata/{id}', [HomeController::class, 'detailwisata'])->name('detail');
 
 //route dashboard
 Route::middleware('auth')->group(function (){
     Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
-
 
 });
 

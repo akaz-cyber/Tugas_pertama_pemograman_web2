@@ -2,24 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Wisata;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
-   public function home() {
-    $judul = [
-        "Raja Ampat",
-        "Labuan Bajo",
-        "Bitan",
+    public function home()
+    {
+        $wisatas = Wisata::latest()->take(3)->get();
 
-    ];
+        return view('Home', compact('wisatas'));
+    }
 
-    $deskripsi = [
-        "Menikmati udara segar pegunungan yang memukau.",
-        "Spot liburan favorit untuk keluarga dan teman-teman.",
-        "Eksplorasi alam dengan pengalaman tak terlupakan."
-    ];
+    public function about()
+    {
+        return view('about');
+    }
 
-    return view('Home', compact('judul', 'deskripsi'));
-   }
+    public function informasi(Request $request)
+    {
+        $query = Wisata::query();
+
+        if ($request->has('search') && $request->search != '') {
+            $query->where('judul', 'like', '%' . $request->search . '%');
+        }
+
+        $wisatas = $query->paginate(6)->appends($request->query());
+
+        return view('InformasiWisata', compact('wisatas'));
+    }
+
+    public function contact()
+    {
+        return view('contact');
+    }
+
+
+    public function detailwisata($id)
+    {
+        $wisata = Wisata::findOrFail($id);
+        return view('detail', compact('wisata'));
+    }
 }

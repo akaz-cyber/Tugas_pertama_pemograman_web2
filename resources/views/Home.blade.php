@@ -39,11 +39,13 @@
                 </div>
 
                 {{-- Kolom Pencarian --}}
-                <div class="carousel-caption-custom ">
-                    <div class="search-box w-75  mx-auto">
-                        <input type="text" placeholder="Ketik untuk mencari destinasi wisata yang dituju...">
-                        <button><i class="bi bi-search"></i></button>
-                    </div>
+                <div class="carousel-caption-custom">
+                    <form action="{{ route('informasi') }}" method="GET" class="search-box w-75 mx-auto">
+                            <input type="text" name="search"
+                            placeholder="Ketik untuk mencari destinasi wisata yang dituju..."
+                            value="{{ request('search') }}">
+                        <button type="submit"><i class="bi bi-search"></i></button>
+                    </form>
                 </div>
             </div>
 
@@ -69,27 +71,6 @@
         </div>
     </div>
     {{-- end hero section --}}
-    {{-- tentang kami --}}
-
-    <div id="tetang" class="container mt-5 mb-4" data-aos="fade-left" data-aos-duration="1000">
-        <h1 class="fw-bold text-success">Tentang Kami</h1>
-        <hr class="border border-2 border-success w-25 mb-4">
-
-        <div class="row align-items-center">
-            <div class="col-md-6 mb-4 mb-md-0">
-                <p class="me-2 fs-5 text-justify">
-                    Kami adalah tim yang berdedikasi untuk memberikan layanan terbaik kepada pelanggan. Dengan pengalaman
-                    dan komitmen tinggi, kami terus berinovasi untuk menghadirkan solusi yang berkualitas dan terpercaya.
-                    Kepuasan pelanggan adalah prioritas utama kami dalam setiap langkah yang kami ambil.
-                </p>
-            </div>
-
-            <div class="col-md-6 text-center">
-                <img src="https://ik.imagekit.io/tvlk/blog/2021/08/boracay-shutterstock_641355409.png" alt="Tim Kami"
-                    class="img-fluid rounded shadow">
-            </div>
-        </div>
-    </div>
 
 
     {{-- wisata populer --}}
@@ -104,42 +85,26 @@
         <div class="container mb-5">
             <div class="d-flex flex-row flex-nowrap overflow-auto gap-3 px-2 pb-2">
 
-                @foreach($judul as $index => $nama)
-                <div class="card shadow-sm border-0" style="min-width: 18rem;">
-                    <img src="https://asset.kompas.com/crops/qs7lqo0UsFE7TXqwfxF7RAaYYA0=/1x0:1024x682/1200x800/data/photo/2020/05/11/5eb950a1c8fb3.jpeg"
-                        class="card-img-top" alt="{{ $nama }}">
-                    <div class="card-body">
-                        <h5 class="card-title fw-semibold">{{ $nama }}</h5>
-                        <p class="card-text text-muted">{{ $deskripsi[$index] }}</p>
-                        <a href="#" class="btn btn-success btn-sm rounded-pill px-4">Lihat</a>
+                @foreach ($wisatas as $wisata)
+                    <div class="card shadow-sm border-0" style="min-width: 18rem;">
+                        <img src="{{ asset('storage/' . $wisata->photo) }}" class="card-img-top" alt="{{ $wisata->judul }}"
+                            style="height: 200px; object-fit: cover;">
+                        <div class="card-body">
+                            <h5 class="card-title fw-semibold">{{ $wisata->judul }}</h5>
+                            <p class="card-text text-muted"
+                                style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                {{ $wisata->deskripsi }}
+                            </p>
+                            <a href="{{ route('detail', ['id' => $wisata->id]) }}"
+                                class="btn btn-success btn-sm rounded-pill px-4">Lihat</a>
+                        </div>
                     </div>
-                </div>
                 @endforeach
 
             </div>
         </div>
     </div>
-    <div id="hubungi" class="container mt-5 mb-5 " data-aos="fade-right" data-aos-duration="1000">
-        <h1 class="fw-bold text-success">Hubungi Kami</h1>
-        <hr class="border border-2 border-success w-25 mb-4">
-        <div class="row">
-            <div class="col-md-7 mb-4">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.915123456789!2d106.82715331531092!3d-6.175110395519095!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e1c1b1c1b1%3A0x1b1b1b1b1b1b1b1b!2sJl.%20Contoh%20No.%20123%2C%20Jakarta!5e0!3m2!1sen!2sid!4v1610000000000!5m2!1sen!2sid"
-                    width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade">
-                </iframe>
-            </div>
 
-            <div class="col-md-5">
-                <h5 class="fw-bold">Informasi Kontak</h5>
-                <p><i class="bi bi-geo-alt-fill me-2"></i>Jl. Contoh No. 123, Jakarta</p>
-                <p><i class="bi bi-telephone-fill me-2"></i>(021) 123-4567</p>
-                <p><i class="bi bi-envelope-fill me-2"></i>kontak@domainanda.com</p>
-                <p><i class="bi bi-clock-fill me-2"></i>Senin - Jumat: 08.00 - 17.00</p>
-            </div>
-        </div>
-    </div>
 
 
 @endsection

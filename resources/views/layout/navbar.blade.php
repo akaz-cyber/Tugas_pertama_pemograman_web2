@@ -16,16 +16,16 @@
                 <!-- Menu Kiri -->
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a href="#home" class="nav-link">Beranda</a>
+                        <a href="{{ route('beranda') }}" class="nav-link">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#tetang" class="nav-link">Tentang kami</a>
+                        <a href="{{ route('about') }}" class="nav-link">Tentang kami</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#infowisata" class="nav-link">Informasi wisata</a>
+                        <a href="{{ route('informasi') }}" class="nav-link">Informasi wisata</a>
                     </li>
                     <li class="nav-item">
-                        <a href="#hubungi" class="nav-link">Alamat dan informasi kontak</a>
+                        <a href="{{ route('contact') }}" class="nav-link">Alamat dan informasi kontak</a>
                     </li>
                 </ul>
                 @auth
