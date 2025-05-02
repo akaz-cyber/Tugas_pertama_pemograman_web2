@@ -6,6 +6,18 @@
 <h1 class="mb-0">Edit Wisata</h1>
 
 <hr />
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <strong>Terjadi kesalahan!</strong>
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form action="{{ route('wisatas.update', $wisata->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')

@@ -41,7 +41,7 @@ class WisataController extends Controller
     {
         // Validasi data input
         $request->validate([
-            'judul' => 'required|string|max:255',
+            'judul' => 'required|string|max:255|unique:wisatas,judul',
             'deskripsi' => 'required|string',
             'photo' => 'required|image|mimes:jpg,jpeg,png|max:2048'
         ]);

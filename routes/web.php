@@ -23,13 +23,6 @@ Route::get('informasi', [HomeController::class, 'informasi'])->name('informasi')
 Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('detailwisata/{id}', [HomeController::class, 'detailwisata'])->name('detail');
 
-//route dashboard
-// Route::middleware('auth')->group(function (){
-//     Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
-
-// });
-
-
 Route::controller(AuthController::class)->group(function () {
     Route::get('register', 'register')->name('register');
     Route::post('register', 'registerSave')->name('register.save');
@@ -37,11 +30,6 @@ Route::controller(AuthController::class)->group(function () {
     Route::post('login', 'loginAction')->name('login.action');
     Route::get('logout', 'logout')->middleware('auth')->name('logout');
 });
-
-
-
-
-
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
@@ -57,20 +45,6 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::delete('destroy/{wisata}', 'destroy')->name('wisatas.destroy');
     });
 });
-
-
-
-
-// Route::controller(WisataController::class)->prefix('Wisatas')->group(function () {
-//     Route::get('', 'index')->name('wisatas');
-//     Route::get('create', 'create')->name('wisatas.create');
-//     Route::post('store', 'store')->name('wisatas.store');
-//     Route::get('show/{id}', 'show')->name('wisatas.show');
-//     Route::get('edit/{id}', 'edit')->name('wisatas.edit');
-//     Route::put('edit/{id}', 'update')->name('wisatas.update');
-//     Route::delete('destroy/{wisata}', 'destroy')->name('wisatas.destroy');
-// });
-
 
 Route::post('detailwisata/{id}/komentar', [HomeController::class, 'simpanKomentar'])
     ->middleware('auth')

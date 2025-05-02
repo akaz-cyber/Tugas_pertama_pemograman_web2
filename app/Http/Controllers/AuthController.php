@@ -18,8 +18,12 @@ class AuthController extends Controller
     {
         Validator::make($request->all(), [
             'name' => 'required',
-            'email' => 'required|email',
-            'password' => 'required|confirmed'
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|confirmed|min:8',
+        ], [
+            'email.unique' => 'Email sudah terdaftar. Silakan gunakan email lain.',
+            'password.min' => 'Password harus terdiri dari 8 karakter.',
+            'password.confirmed' => 'Konfirmasi password tidak cocok.',
         ])->validate();
 
         User::create([
