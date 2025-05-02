@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Wisata;
 use Illuminate\Http\Request;
+use App\Models\Komentar;
 
 class HomeController extends Controller
 {
@@ -41,6 +42,22 @@ class HomeController extends Controller
     public function detailwisata($id)
     {
         $wisata = Wisata::findOrFail($id);
-        return view('detail', compact('wisata'));
+        $komentars = Komentar::where('wisata_id', $id)->latest()->get();
+        return view('detail', compact('wisata', 'komentars'));
+    }
+
+    public function simpanKomentar(Request $request, $id)
+    {
+        $request->validate([
+            'isi' => 'required'
+        ]);
+
+        Komentar::create([
+            'user_id' => auth()->id(),
+            'wisata_id' => $id,
+            'isi' => $request->isi
+        ]);
+
+        return redirect()->route('detail', $id)->with('success', 'Komentar berhasil ditambahkan.');
     }
 }

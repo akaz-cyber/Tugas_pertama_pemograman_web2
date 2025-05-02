@@ -15,4 +15,8 @@ class Wisata extends Model
         'deskripsi',
     ];
 
+    public function komentars()
+    {
+        return $this->hasMany(Komentar::class);
+    }
 }

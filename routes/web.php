@@ -48,3 +48,8 @@ Route::controller(WisataController::class)->prefix('Wisatas')->group(function ()
     Route::put('edit/{id}', 'update')->name('wisatas.update');
     Route::delete('destroy/{wisata}', 'destroy')->name('wisatas.destroy');
 });
+
+
+Route::post('detailwisata/{id}/komentar', [HomeController::class, 'simpanKomentar'])
+    ->middleware('auth')
+    ->name('komentar.simpan');
