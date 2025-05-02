@@ -35,9 +35,7 @@
                             {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
-                            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
-                            <li><hr class="dropdown-divider"></li>
+                            {{-- <li><hr class="dropdown-divider"></li> --}}
                             <li>
                                 <form action="{{ route('logout') }}" method="GET">
                                     <button type="submit" class="dropdown-item text-danger">Logout</button>

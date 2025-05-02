@@ -24,10 +24,10 @@ Route::get('contact', [HomeController::class, 'contact'])->name('contact');
 Route::get('detailwisata/{id}', [HomeController::class, 'detailwisata'])->name('detail');
 
 //route dashboard
-Route::middleware('auth')->group(function (){
-    Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
+// Route::middleware('auth')->group(function (){
+//     Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
 
-});
+// });
 
 
 Route::controller(AuthController::class)->group(function () {
@@ -39,15 +39,37 @@ Route::controller(AuthController::class)->group(function () {
 });
 
 
-Route::controller(WisataController::class)->prefix('Wisatas')->group(function () {
-    Route::get('', 'index')->name('wisatas');
-    Route::get('create', 'create')->name('wisatas.create');
-    Route::post('store', 'store')->name('wisatas.store');
-    Route::get('show/{id}', 'show')->name('wisatas.show');
-    Route::get('edit/{id}', 'edit')->name('wisatas.edit');
-    Route::put('edit/{id}', 'update')->name('wisatas.update');
-    Route::delete('destroy/{wisata}', 'destroy')->name('wisatas.destroy');
+
+
+
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
+
+    // semua fitur CRUD wisata hanya bisa diakses admin
+    Route::controller(WisataController::class)->prefix('Wisatas')->group(function () {
+        Route::get('', 'index')->name('wisatas');
+        Route::get('create', 'create')->name('wisatas.create');
+        Route::post('store', 'store')->name('wisatas.store');
+        Route::get('show/{id}', 'show')->name('wisatas.show');
+        Route::get('edit/{id}', 'edit')->name('wisatas.edit');
+        Route::put('edit/{id}', 'update')->name('wisatas.update');
+        Route::delete('destroy/{wisata}', 'destroy')->name('wisatas.destroy');
+    });
 });
+
+
+
+
+// Route::controller(WisataController::class)->prefix('Wisatas')->group(function () {
+//     Route::get('', 'index')->name('wisatas');
+//     Route::get('create', 'create')->name('wisatas.create');
+//     Route::post('store', 'store')->name('wisatas.store');
+//     Route::get('show/{id}', 'show')->name('wisatas.show');
+//     Route::get('edit/{id}', 'edit')->name('wisatas.edit');
+//     Route::put('edit/{id}', 'update')->name('wisatas.update');
+//     Route::delete('destroy/{wisata}', 'destroy')->name('wisatas.destroy');
+// });
 
 
 Route::post('detailwisata/{id}/komentar', [HomeController::class, 'simpanKomentar'])
