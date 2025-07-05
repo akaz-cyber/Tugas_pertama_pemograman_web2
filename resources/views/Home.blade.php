@@ -17,7 +17,7 @@
 
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://kemenparekraf.go.id/_next/image?url=https%3A%2F%2Fapi2.kemenparekraf.go.id%2Fstorage%2Fapp%2Fuploads%2Fpublic%2F620%2Fb45%2F1d6%2F620b451d668b3373065297.jpg&w=3840&q=75"
+                        <img src="https://www.pesonaindo.com/wp-content/uploads/2015/11/Foto-Tempat-Wisata-Alam-di-Jawa-Pesona-Indonesia-fototrip-3-1025x530.jpg"
                             class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">

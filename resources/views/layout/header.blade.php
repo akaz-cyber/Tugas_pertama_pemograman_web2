@@ -10,5 +10,6 @@
     <link rel="stylesheet" href="{{asset('css/footer.css')}}">
     <link rel="stylesheet" href="{{ asset('css/carousel.css') }}">
     <link rel="stylesheet" href="{{asset('css/pariwista.css')}}">
+
     <title>Sipar - @yield('title')</title>
   </head>

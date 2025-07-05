@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\WisataController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,16 @@ Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('edit/{id}', 'edit')->name('wisatas.edit');
         Route::put('edit/{id}', 'update')->name('wisatas.update');
         Route::delete('destroy/{wisata}', 'destroy')->name('wisatas.destroy');
+    });
+   //semua fitur crud user hanya bisa di akses oleh admin
+    Route::controller(UserController::class)->prefix('users')->group(function () {
+        Route::get('', 'index')->name('users');
+        Route::get('create', 'create')->name('users.create');
+        Route::post('store', 'store')->name('users.store');
+        Route::get('show/{id}', 'show')->name('users.show');
+        Route::get('edit/{id}', 'edit')->name('users.edit');
+        Route::put('edit/{id}', 'update')->name('users.update');
+        Route::delete('destroy/{user}', 'destroy')->name('users.destroy');
     });
 });
 

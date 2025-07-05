@@ -7,7 +7,6 @@ use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class WisataController extends Controller
 {
     /**
@@ -68,7 +67,7 @@ class WisataController extends Controller
     public function show($id)
     {
         $wisata = Wisata::findOrFail($id);
-        return view("admin.showadmin", compact('wisata'));
+        return view("admin.showuser", compact('wisata'));
     }
 
     /**
@@ -131,4 +130,7 @@ class WisataController extends Controller
         // Redirect kembali dengan pesan sukses
         return redirect()->route('wisatas')->with('success', 'Data wisata berhasil dihapus.');
     }
+
+
+
 }

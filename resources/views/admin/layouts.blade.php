@@ -25,6 +25,8 @@
     <!-- Custom styles for this template-->
 
     <link href="{{ asset('admin_assets/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.5.6/css/buttons.dataTables.min.css">
 </head>
 
 <body id="page-top">
@@ -51,33 +53,33 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">@yield('title')</h1>
-                        </div>
+                    </div>
 
                     @yield('contents')
 
                     <!-- Content Row -->
 
 
-                    </div>
+                </div>
                 <!-- /.container-fluid -->
 
-                </div>
+            </div>
             <!-- End of Main Content -->
 
             <!-- Footer -->
             @include('admin.adminfooter')
             <!-- End of Footer -->
 
-            </div>
+        </div>
         <!-- End of Content Wrapper -->
 
-        </div>
+    </div>
     <!-- End of Page Wrapper -->
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
-        </a>
+    </a>
 
     <!-- Bootstrap core JavaScript-->
 
@@ -93,6 +95,33 @@
     <!-- Page level plugins -->
 
     <script src="{{ asset('admin_assets/vendor/chart.js/Chart.min.js') }}"></script>
+
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.bootstrap4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.5.6/js/buttons.print.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            $('#tabelPaket, #tabelLayanan, #tabelProduk').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'pdfHtml5',
+                        orientation: 'portrait',
+                        pageSize: 'A4'
+                    },
+                    'excelHtml5',
+                ]
+            });
+        });
+    </script>
+
 </body>
 
 </html>

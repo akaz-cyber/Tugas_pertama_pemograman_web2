@@ -20,6 +20,12 @@
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Wisata</span></a>
         </li>
+
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('users')}}">
+                <i class="fas fa-fw fa-user-alt"></i>
+                <span>User</span></a>
+            </li>
     <!-- Divider -->
 
     <hr class="sidebar-divider d-none d-md-block">

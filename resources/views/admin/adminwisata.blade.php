@@ -5,7 +5,9 @@
 
     <div class="d-flex align-items-center justify-content-between">
         <h1 class="mb-0">List Wisata</h1>
-        <a href="{{ route('wisatas.create') }}" class="btn btn-primary">Add wisata</a>
+        <div class="row">
+                <a href="{{ route('wisatas.create') }}" class="btn btn-primary mx-3">Add wisata</a>
+        </div>
     </div>
 
     <hr />
@@ -14,10 +16,10 @@
             {{ Session::get('success') }}
         </div>
     @endif
-    <table class="table table-hover">
+    <table id="tabelPaket" class="table table-hover">
         <thead class="table-primary">
             <tr>
-                <th>#</th>
+                <th>No</th>
                 <th>Images</th>
                 <th>Title</th>
                 <th>Description</th>
