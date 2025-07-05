@@ -109,14 +109,22 @@
 
     <script>
         $(document).ready(function() {
-            $('#tabelPaket, #tabelLayanan, #tabelProduk').DataTable({
+            $('#tabelPaket').DataTable({
                 dom: 'Bfrtip',
                 buttons: [{
                         extend: 'pdfHtml5',
                         orientation: 'portrait',
-                        pageSize: 'A4'
+                        pageSize: 'A4',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
                     },
-                    'excelHtml5',
+                    {
+                        extend: 'excelHtml5',
+                        exportOptions: {
+                            columns: ':not(:last-child)'
+                        }
+                    }
                 ]
             });
         });

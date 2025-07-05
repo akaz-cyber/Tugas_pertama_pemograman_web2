@@ -34,6 +34,7 @@ Route::controller(AuthController::class)->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('dashboardadmin', [DashboardController::class,'homedashboard'])->name('dashboard');
+    Route::get('/export-komentar', [DashboardController::class, 'exportKomentar'])->name('export.komentar');
 
     // semua fitur CRUD wisata hanya bisa diakses admin
     Route::controller(WisataController::class)->prefix('Wisatas')->group(function () {
