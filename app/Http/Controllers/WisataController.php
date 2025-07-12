@@ -67,7 +67,7 @@ class WisataController extends Controller
     public function show($id)
     {
         $wisata = Wisata::findOrFail($id);
-        return view("admin.showuser", compact('wisata'));
+        return view("admin.showadmin", compact('wisata'));
     }
 
     /**
